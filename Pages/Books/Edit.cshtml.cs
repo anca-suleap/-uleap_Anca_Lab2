@@ -31,18 +31,18 @@ namespace Șuleap_Anca_Lab2.Pages.Books
             }
 
             var Book = await _context.Book
- .Include(b => b.Publisher)
- .Include(b => b.Author)
- .Include(b => b.BookCategories).ThenInclude(b => b.Category)
- .AsNoTracking()
- .FirstOrDefaultAsync(m => m.ID == id);
+                .Include(b => b.Publisher)
+                .Include(b => b.Author)
+                .Include(b => b.BookCategories).ThenInclude(b => b.Category)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (Book == null)
             {
                 return NotFound();
             }
-            Book = book;
-            PopulateAssignedCategoryData(_context, Book);
+
+PopulateAssignedCategoryData(_context, Book);
             var authorList = _context.Author.Select(x => new
             {
                 x.ID,
@@ -51,15 +51,14 @@ namespace Șuleap_Anca_Lab2.Pages.Books
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID",
 "PublisherName");
 
-            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID",
-"FullName");
+            ViewData["AuthorID"] = new SelectList(authorList, "ID", "FullName");
             return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync(int? id, string[]
-            selectedCategories)
+selectedCategories)
         {
             if (id == null)
             {
@@ -78,8 +77,8 @@ namespace Șuleap_Anca_Lab2.Pages.Books
             if (await TryUpdateModelAsync<Book>(
             bookToUpdate,
             "Book",
-            i => i.Title, i => i.AuthorName,
-            i => i.Price, i => i.PublishingDate, i => i.AuthorID))
+            i => i.Title, i => i.Author,
+            i => i.Price, i => i.PublishingDate, i  => i.PublisherID, i => i.AuthorID))
             {
                 UpdateBookCategories(_context, selectedCategories, bookToUpdate);
                 await _context.SaveChangesAsync();

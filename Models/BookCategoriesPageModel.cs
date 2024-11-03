@@ -11,8 +11,8 @@ namespace Șuleap_Anca_Lab2.Models
         {
             var allCategories = context.Category;
             var bookCategories = new HashSet<int>(
-            book.BookCategories.Select(c => c.CategoryID)); //
-            AssignedCategoryDataList = new List<AssignedCategoryData>();
+                book.BookCategories.Select(c => c.CategoryID)); //
+        AssignedCategoryDataList = new List<AssignedCategoryData>();
             foreach (var cat in allCategories)
             {
                 AssignedCategoryDataList.Add(new AssignedCategoryData
@@ -33,7 +33,7 @@ namespace Șuleap_Anca_Lab2.Models
             }
             var selectedCategoriesHS = new HashSet<string>(selectedCategories);
             var bookCategories = new HashSet<int>
-            (bookToUpdate.BookCategories.Select(c => c.Category.ID));
+                (bookToUpdate.BookCategories.Select(c => c.Category.ID));
             foreach (var cat in context.Category)
             {
                 if (selectedCategoriesHS.Contains(cat.ID.ToString()))
