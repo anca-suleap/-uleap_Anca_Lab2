@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Șuleap_Anca_Lab2.Migrations.LibraryIdentity
 {
     /// <inheritdoc />
-    public partial class CreateIdentity : Migration
+    public partial class ResyncSchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -12,8 +12,8 @@ using Șuleap_Anca_Lab2.Data;
 namespace Șuleap_Anca_Lab2.Migrations.LibraryIdentity
 {
     [DbContext(typeof(LibraryIdentityContext))]
-    [Migration("20241111112448_CreateIdentity")]
-    partial class CreateIdentity
+    [Migration("20241117171200_InitialIdentitySchema")]
+    partial class InitialIdentitySchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
